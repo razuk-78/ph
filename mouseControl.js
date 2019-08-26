@@ -1,4 +1,4 @@
-var mouseCtrl = function([]){
+var mouseCtrl = function(){
     var chk =false;
     var circ={};
     window.onmousedown=function(e){
