@@ -13,7 +13,7 @@ var observer={
       setInterval(function(){
      for(var i=0;i<vectors.length;i++){
           for(var ii=0;ii<vectors.length;ii++){
-     if(vector.getDistanceVectors(vectors[i],vectors[ii])<50){
+     if(vector.getDistanceVectors(vectors[i],vectors[ii])<20){
           onCollusionDetect(vectors[i], vectors[ii]);
      }else{
            onCollusionUnDetect(vectors[i], vectors[ii]);
@@ -62,7 +62,7 @@ var mouseCtrl = function([]){
    
      if(vector.getDistanceVectors(vct1,List[i])<28){
        circ=List[i];
-       consol.log(Math. vct1.x/vct1.y);Math.
+    
   
      }
      
@@ -127,7 +127,7 @@ function circle(x,y,rad,name,color, mass){
                     movingCallBabck(newVect,oldVect);
                   }else{
                         main.stillY=main.y;main.stillX=main.x;
-                        stopMovingCallBackBack();
+                        stopMovingCallBackBack(main);
                         
                   }
      
@@ -147,10 +147,11 @@ function circle(x,y,rad,name,color, mass){
           secondeCounter=0;
         }
      //on stop moving
-   },function(){
+   },function(v){
      if(totalDistance>0){
      secondNumber = 0;
      console.log(totalDistance);
+     console.log("X: "+v.x+" Y: "+ v.y);
      console.log("iam stoped");}
      totalDistance=0;
    })
@@ -161,15 +162,16 @@ function circle(x,y,rad,name,color, mass){
 
 var circ1=new circle(300,200,25,"B","green",100);
 var circ2=new circle(200,200,25,"A","red",100);
-List=[circ1, circ2];
+var circ3=new circle(400,200,25,"C","black",100);
+var circ4=new circle(200,300,25,"D","yellow",100);
+List=[circ1, circ2,circ3,circ4 ];
 var ctr=new mouseCtrl([1,2]);
 observer.collusionDetct(List,function(circle1, circle2){
-circle1.color="blue";
-circle2.color="blue";
+    console.log(circle1.name);
  },function(circle1, circle2){
 
-   circle1.color="black";
-   circle2.color="green";
+
+   
  });
 
 setInterval(function(){
