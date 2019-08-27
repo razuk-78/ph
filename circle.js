@@ -1,8 +1,9 @@
 var circle=function (x,y,rad,name,color, mass){
+  
     var totalDistance=0;
+    var main=this;
     this.avrgeSpeed;
     this.instantanouceSpeed;
-    var main=this;
     this.oldX=this.x;this.oldY=this.y;
     this.stillX=this.x;this.stillY=this.y;
     this.getMagnetude=function(newMag, oldMag){
@@ -30,7 +31,7 @@ var circle=function (x,y,rad,name,color, mass){
     }
         
     this.onMoving=function(movingCallBabck,stopMovingCallBackBack, getDirection){
-                  
+              
       setInterval(function(){
                   
                   if(main.oldX!=main.x||main.oldY!=main.y){  
@@ -44,21 +45,37 @@ var circle=function (x,y,rad,name,color, mass){
                         
                   }
      
-      },100);
+      },1000);
     }
     var secondeCounter=0;
     var secondNumber=0;
+
+   this.moveInCircle=function(r){
+     var i=0;
+     setInterval(()=>{
+       i++;
+        this.x=this.x+r*Math.sin(i);
+        this.y=this.y+r*Math.cos(i);
+     },100);
+    
+   }
+  
+   var Speed =0;
+ 
+
+   this.getSpeed=function(){
+
+      return speed;
+
+   }
    this.onMoving(
        //on moving
        function(newVct,oldVct){
         secondeCounter+= 1;
         secondNumber+= 1;
-        totalDistance+=vector.getDistanceVectors(newVct,oldVct);
-        //become one second
-        if(secondeCounter>9){
-          
-          secondeCounter=0;
-        }
+        totalDistance +=vector.getDistanceVectors(newVct,oldVct);
+        speed = vector.getDistanceVectors(newVct,oldVct);
+    
      //on stop moving
    },function(v){
      if(totalDistance>0){
@@ -67,6 +84,7 @@ var circle=function (x,y,rad,name,color, mass){
      console.log("X: "+v.x+" Y: "+ v.y);
      console.log("iam stoped");}
      totalDistance=0;
+     speed=0;
    })
 
 }

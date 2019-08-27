@@ -8,10 +8,11 @@ var circ3=new circle(400,200,25,"C","black",100);
 var circ4=new circle(200,300,25,"D","yellow",100);
 List=[circ1, circ2,circ3,circ4 ];
 var ctr=new mouseCtrl();
-
-observer.collusionDetct(List,
-                        function(circle1, circle2){
-                        console.log("collusion detect: "+circle1.name);
+//circ1.moveInCircle(100);
+observer.collisionDetct(List,
+                        function(circle1){
+                        
+                       console.log("speed: "+circ1.getSpeed());
                          },
                         function(circle1, circle2){
 
